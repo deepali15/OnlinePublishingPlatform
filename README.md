@@ -8,3 +8,6 @@ npm install firebase @angular/fire
 
 For rich text editing (using an open-source library like Quill)
 npm install ngx-quill
+
+
+npm install @auth0/auth0-angular
