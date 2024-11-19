@@ -11,3 +11,5 @@ npm install ngx-quill
 
 
 npm install @auth0/auth0-angular
+
+ Create a project at https://firebase.google.com/ and grab your web config:
