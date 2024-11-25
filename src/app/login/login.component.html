@@ -1,0 +1,24 @@
+<div class="parent">
+    <!-- <img src="https://i.postimg.cc/MTRK7Thf/bg-form.jpg" alt=""> -->
+    <div class="container">
+        <form [formGroup]="userForm">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="username" formControlName="username" placeholder="username">
+                <i class='bx bx-envelope'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" formControlName="password" placeholder="Password">
+                <i class='bx bx-lock-alt'></i>
+            </div>
+
+            <button class="btn" (click)="onLogin()">Login</button>
+            <div class="register">
+                <p>Don't have an account? <br>
+                    <button class="btn" (click)="toRegister()">register</button>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
