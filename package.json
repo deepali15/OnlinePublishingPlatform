@@ -24,7 +24,6 @@
     "@angular/ssr": "^18.2.11",
     "@auth0/auth0-angular": "^2.2.3",
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
-    "express": "^4.18.2",
     "firebase": "^10.14.1",
     "ngx-quill": "^26.0.10",
     "quill": "^2.0.2",

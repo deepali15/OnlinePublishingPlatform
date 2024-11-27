@@ -1,6 +1,8 @@
+// src/app/auth/auth.guard.ts
+
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
-import { AuthService } from './auth.service';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from './auth.service'; // Adjust the path if necessary
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +11,14 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-    try {
-      if (this.authService.isLoggedIn()) {
-        return true; // User is logged in, allow access
-      }
-    } catch (error) {
-      console.error('Auth guard error:', error);
+  canActivate(): boolean {
+    // Check if the user is logged in
+    if (this.authService.isLoggedIn()) {
+      return true; // User is authenticated, allow access
     }
-    this.router.navigate(['/login']); // Redirect to login page
-    return false; // User is not logged in, deny access
+
+    // User is not authenticated, redirect to login
+    this.router.navigate(['/login']);
+    return false; // Deny access
   }
 }

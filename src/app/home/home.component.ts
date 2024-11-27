@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Article, ArticleService } from '../article.service';
+import { Observable } from 'rxjs';
+import { Router } from 'express';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,39 +14,38 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-articles: Article[] = []; // Array to store the articles
+  // articles$!: Observable<Article[]>;
+  articles: Article[] = []; 
   filteredArticles: Article[] = []; // Array for search results
   searchQuery: string = ''; // For the search input
-
+  isBrowser: any;
   // Pagination
   currentPage: number = 1;
   pageSize: number = 5;
   totalPages: number = 0;
 
-  constructor() {
-    // Simulate fetching articles (replace with API call in real scenarios)
-    this.fetchArticles();
-  }
-  fetchArticles() {
-    const dummyArticles: Article[] = Array.from({ length: 20 }, (_, i) => ({
-      id: i + 1,
-      thumbnail: 'https://via.placeholder.com/300',
-      title: `Sample Article ${i + 1}`,
-      description: `This is a short description for article ${i + 1}.`,
-      author: `Author ${i + 1}`,
-      publishDate: new Date(),
-    }));
+  constructor(private router: Router) {
+    this.loadArticles();
+    // this.updatePage();
 
-    this.articles = dummyArticles;
-    this.totalPages = Math.ceil(this.articles.length / this.pageSize);
-    this.updatePage();
   }
+
+  loadArticles() {
+    const savedArticles = localStorage.getItem('articles'); // Assuming articles are stored under 'apartments'
+    if (savedArticles) {
+      this.articles = JSON.parse(savedArticles);
+      this.filteredArticles = [...this.articles]; // Initialize filtered articles
+      this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
+      this.updatePage();
+    }
+  }
+
   onSearch() {
     if (this.searchQuery.trim()) {
       this.filteredArticles = this.articles.filter(
         (article) =>
-          article.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          article.author.toLowerCase().includes(this.searchQuery.toLowerCase())
+          article.thumbnail.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          article.authorName.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     } else {
       this.filteredArticles = [...this.articles];
@@ -56,8 +59,7 @@ articles: Article[] = []; // Array to store the articles
     const endIndex = startIndex + this.pageSize;
 
     // Use filteredArticles if a search is active, otherwise use articles
-    this.filteredArticles =
-      this.searchQuery.trim() !== '' ? this.filteredArticles : [...this.articles];
+    // this.filteredArticles =this.searchQuery.trim() !== '' ? this.filteredArticles : [...this.articles];
     this.filteredArticles = this.filteredArticles.slice(startIndex, endIndex);
   }
   onPrevious() {
@@ -77,12 +79,4 @@ articles: Article[] = []; // Array to store the articles
     }
   }
 
-}
-interface Article {
-  id: number;
-  thumbnail: string;
-  title: string;
-  description: string;
-  author: string;
-  publishDate: Date;
 }

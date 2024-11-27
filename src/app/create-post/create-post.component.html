@@ -1,33 +1,42 @@
-<!-- <div class="editor-container">
-  <form [formGroup]="editorForm" (ngSubmit)="submitArticle()">
-    <quill-editor
-      formControlName="content"
-      [modules]="editorModules"
-      placeholder="Write your article here..."
-    ></quill-editor>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container">
 
-    <div class="form-group">
-      <input
-        type="text"
-        class="form-control"
-        formControlName="title"
-        placeholder="Article Title"
-      />
-    </div>
-    <div class="form-group">
-      <button type="button" class="btn btn-secondary" (click)="saveDraft()">
-        Save as Draft
-      </button>
-      <button type="submit" class="btn btn-primary">Publish Article</button>
-    </div>
-  </form>
-</div> -->
+ 
+<form [formGroup]="postForm" (ngSubmit)="postListing()" class="form-container">
+  <div class="actions">
+    <button class="preview-btn">Preview</button>
+    <button type="submit" class="btn-submit">Publish</button>
+  </div>
 
-<quill-editor
-  [formControl]="control"
-  class="content-editor"
-  [placeholder]="''"
-  [modules]="quillConfiguration"
-  [styles]="{ 'min-height': '120px' }"
->
-</quill-editor>
+  <!-- <h2>Choose your Apartment/Building</h2> -->
+  <!-- <h3>add thumbnail</h3> -->
+  <div class="form-group">
+    <!-- <label for="title">Title</label> -->
+    <input type="text" formControlName="thumbnail" id="thumbnail" placeholder="add thumbnail" />
+  </div>
+
+  <div class="form-group">
+    <!-- <label for="buildingType">select category</label> -->
+    <select formControlName="category" id="category">
+      <option value="">select category</option>
+      <option value="cat 1">cat 1</option>
+      <option value="cat 2"> cat 2</option>
+      <option value="cat 3">cat 3</option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <!-- <label for="description">Description</label> -->
+    <textarea formControlName="description" id="description" rows="5" placeholder="  "></textarea>
+  </div>
+  <h3>Image</h3>
+  <!-- <div class="image-upload"> -->
+<div class="form-group">
+  <!-- <label for="image">Select an image</label> -->
+  <input type="file" (change)="onImageSelected($event)" id="image" />
+</div>
+
+  <!-- <button type="submit" class="btn-submit">Submit Listing</button> -->
+</form>
+</div>

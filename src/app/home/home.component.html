@@ -1,29 +1,33 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 <div class="home-container">
-    <header class="header">
-      <h1>Articles</h1>
-      <div class="search-bar">
-        <input type="text" placeholder="Search articles or authors..." [(ngModel)]="searchQuery" />
-        <button (click)="onSearch()">Search</button>
-      </div>
-    </header>
-  
-    <section class="articles">
-      <div *ngFor="let article of articles" class="article-card">
-        <img [src]="article.thumbnail" alt="Article Thumbnail" />
-        <div class="content">
-          <h2>{{ article.title }}</h2>
-          <p class="description">{{ article.description }}</p>
-          <p class="meta">
-            <span>By {{ article.author }}</span> | <span>{{ article.publishDate | date }}</span>
-          </p>
-        </div>
-      </div>
-    </section>
-  
-    <footer class="pagination">
-      <button (click)="onPrevious()" [disabled]="currentPage === 1">Previous</button>
-      <span>Page {{ currentPage }}</span>
-      <button (click)="onNext()" [disabled]="currentPage === totalPages">Next</button>
-    </footer>
+  <h1>Articles</h1>
+  <div class="form-group">
+    <!-- <label for="search">Search:</label> -->
+    <form action="">
+      <input type="search" autofocus [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="keywords" required>
+      <i class="fa fa-search"></i>
+    </form>
+
   </div>
-  
+
+  <section class="articles">
+    <div *ngFor="let article of filteredArticles" class="article-card">
+      <img [src]="article.thumbnail" alt="Article Thumbnail" />
+      <div class="content">
+        <h2>{{ article.thumbnail }}</h2>
+        <p class="description">{{ article.description }}</p>
+        <p class="meta">
+          <span>By {{ article.authorName }}</span> | <span>{{ article.publishDate | date }}</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pagination">
+    <button (click)="onPrevious()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="onNext()" [disabled]="currentPage === totalPages">Next</button>
+  </footer>
+</div>

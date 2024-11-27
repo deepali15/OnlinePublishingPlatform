@@ -1,33 +1,30 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+// src/app/auth/auth.service.ts
+
 import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root' // This ensures the service is available throughout the app
+  providedIn: 'root'
 })
 export class AuthService {
-  private readonly TOKEN_KEY = 'AuthToken'; // Change this to your actual key
-  private isBrowser: boolean;
+    private readonly TOKEN_KEY = 'AuthToken'; // Change this to your actual key
+    private isBrowser: boolean;
+  
+  // This is a simple example; you might want to implement actual authentication logic
+  private loggedIn = false;
 
   constructor(@Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  // Simulate checking if a user is logged in by checking for a token
-  isLoggedIn(): boolean {
+  // Simulate a login method
+  login(token: string) {
     if (this.isBrowser) {
-      return !!localStorage.getItem(this.TOKEN_KEY);
+        localStorage.setItem(this.TOKEN_KEY, token); // Store token in localStorage (or use a more secure method)
+      }
     }
-    return false;
-  }
 
-  // Simulate a login method that sets an authentication token
-  login(token: string): void {
-    if (this.isBrowser) {
-      localStorage.setItem(this.TOKEN_KEY, token); // Store token in localStorage (or use a more secure method)
-    }
-  }
-
-  // Simulate a logout method that removes the authentication token
+  // Simulate a logout method
   logout(): void {
     if (this.isBrowser) {
       localStorage.removeItem(this.TOKEN_KEY);
@@ -35,5 +32,11 @@ export class AuthService {
     }
   }
 
-  // You can add more authentication-related methods as needed
+  // Check if the user is logged in
+  isLoggedIn(): boolean {
+    if (this.isBrowser) {
+      return !!localStorage.getItem(this.TOKEN_KEY);
+    }
+    return false;
+  }
 }
