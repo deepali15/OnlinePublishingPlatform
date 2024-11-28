@@ -1,0 +1,10 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  .spacer {
+    flex: 1;
+  }

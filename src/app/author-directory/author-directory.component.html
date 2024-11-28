@@ -1,0 +1,50 @@
+<app-toolbar></app-toolbar>
+<div class="discover-page">
+    <header class="discover-header">
+
+        <button class="back-btn" (click)="back()">←</button>
+        <div>
+            <h1>Discover</h1>
+            <p>Step into a new zone, join a new conversation.</p>
+        </div>
+</header>
+
+    <div class="search-section">
+        <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()" class="search-box" />
+        <select [(ngModel)]="selectedCategory" class="dropdown">
+            <option value="articles">Articles</option>
+            <option value="authors">Authors</option>
+        </select>
+    </div>
+
+    <div class="trending-section">
+        <p>Trending keywords:</p>
+        <div class="keywords">
+            <span *ngFor="let keyword of trendingKeywords" class="keyword">
+                #{{ keyword }}
+            </span>
+        </div>
+    </div>
+    <section class="readers-choice">
+        <h2>Readers' choice</h2>
+        <div class="articles">
+            <div class="article-card" *ngFor="let article of filteredArticles">
+                <div class="article-thumbnail"></div>
+                <p>{{ article.thumbnail }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="rising-authors">
+        <h2>Rising authors</h2>
+        <div class="authors">
+            <div class="author-card" *ngFor="let author of authors">
+                <div class="author-badge">{{ author.category }}</div>
+                <div class="author-thumbnail"></div>
+                <h3>{{ author.name }}</h3>
+                <p>{{ author.bio }}</p>
+                <button class="visit-btn">Visit →</button>
+            </div>
+        </div>
+    </section>
+</div>

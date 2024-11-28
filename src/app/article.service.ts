@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Author } from './author-directory/author-directory.component';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,20 @@ export class ArticleService {
       
     }
    }
+   getArticle(id: number): Observable<Article | undefined> {
+    return new Observable(observer => {
+      const article = this.articles.find(a => a.id === id);
+      observer.next(article);
+      observer.complete();
+    });
+  }
    getArticles(): Observable<Article[]> {
     console.log(this.articles)
     return of(this.articles);
   }
    private loadArticle() {
     if (this.isBrowser) {
-      const savedArticle = localStorage.getItem('apartments');
+      const savedArticle = localStorage.getItem('articles');
       if (savedArticle) {
         this.articles = JSON.parse(savedArticle);
         this.articleSubject.next(this.articles);
@@ -32,12 +40,23 @@ export class ArticleService {
   }
   private saveArticle() {
     if (this.isBrowser) {
-      localStorage.setItem('apartments', JSON.stringify(this.articles));
+      localStorage.setItem('articles', JSON.stringify(this.articles));
     }
   }
-  addArticle(apartment: Article): void {
-    apartment.id = this.articles.length + 1;
-    this.articles.push(apartment);
+  addArticle(article: Article): void {
+    article.id = this.articles.length + 1;
+    article.publishDate= new Date();
+
+    const currentUser  = localStorage.getItem('currentUser');
+    if (currentUser ) {
+      const user = JSON.parse(currentUser ) as Author;
+      article.authorName = user.authorName; // Set the author name from the current user
+    } else {
+      article.authorName = 'Unknown'; // Handle case where there is no user
+    }
+    console.log("current user: ",currentUser)
+    console.log("article : ",article)
+    this.articles.push(article);
     if (this.isBrowser) {
       this.saveArticle();
     }
@@ -52,4 +71,6 @@ export interface Article {
   thumbnail: String;
   publishDate: Date;
   image: string;
+  popularity: number;
 }
+

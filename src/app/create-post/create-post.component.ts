@@ -67,27 +67,4 @@ export const QuillConfiguration = {
     ['clean'],
   ],
 };
-  
-//    this.editorModules = {
-//     toolbar: [
-//       ['bold', 'italic', 'underline', 'strike'],        // Formatting
-//       [{ header: 1 }, { header: 2 }],                  // Headers
-//       [{ list: 'ordered' }, { list: 'bullet' }],       // Lists
-//       [{ script: 'sub' }, { script: 'super' }],        // Subscript/Superscript
-//       [{ indent: '-1' }, { indent: '+1' }],            // Indent
-//       [{ direction: 'rtl' }],                          // Text Direction
-//       [{ size: ['small', false, 'large', 'huge'] }],   // Font Size
-//       [{ header: [1, 2, 3, 4, 5, 6, false] }],         // Headers
-//       [{ color: [] }, { background: [] }],             // Color Picker
-//       [{ font: [] }],                                  // Font Family
-//       [{ align: [] }],                                 // Text Align
-//       ['link', 'image', 'video'],                      // Insert Options
-//       ['clean'],
-//       ['formula']  
-//     ],
-//     clipboard: {
-//       matchVisual: false, // Prevent visual formatting when pasting
-//     },
-//   };
-// }
 

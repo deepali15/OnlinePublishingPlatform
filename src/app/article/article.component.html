@@ -1,1 +1,27 @@
-<p>article works!</p>
+<div *ngIf="article">
+  <div class="apartment-detail">
+    <img [src]="getImage(article.image)" class="article-image" />
+    <h2>{{ article.thumbnail }}</h2>
+    <p class="description"> {{ article.description }}</p>
+    <p class="authorName"> {{ article.authorName }}</p>
+    <p class="publishDate"> {{ article.publishDate }}</p>
+  </div>
+
+  <div class="comments-section">
+    <h3>Comments</h3>
+    <div *ngFor="let comment of comments" class="comment">
+      <p class="comment-author"><b>{{ comment.author }}</b></p>
+      <p class="comment-text">{{ comment.text }}</p>
+    </div>
+    <h4>Add a Comment</h4>
+    <form (ngSubmit)="addComment()">
+      <textarea [(ngModel)]="newComment.text" name="commentText" rows="3" placeholder="Write your comment here..."
+        required></textarea>
+      <input [(ngModel)]="newComment.author" name="commentAuthor" type="text" placeholder="Your name" required />
+      <button type="submit" class="btn">Add Comment</button>
+    </form>
+  </div>
+</div>
+<button class="btn" (click)="backHome()">
+  View All
+</button>

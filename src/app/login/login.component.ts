@@ -3,6 +3,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { Author } from '../author-directory/author-directory.component';
 
 @Component({
   selector: 'app-login',
@@ -26,11 +27,11 @@ export class LoginComponent {
       const formValue = this.userForm.value;
 
       // Get stored user details from localStorage
-      const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+      const registeredUsers = JSON.parse(localStorage.getItem('authors') || '[]');
 
       // Find user with matching credentials
-      const user = registeredUsers.find((u: any) =>
-        u.username === formValue.username &&
+      const user = registeredUsers.find((u: Author) =>
+        u.authorName === formValue.username &&
         u.password === formValue.password
       );
       if (user) {

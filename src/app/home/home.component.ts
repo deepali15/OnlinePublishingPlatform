@@ -1,15 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Article, ArticleService } from '../article.service';
-import { Observable } from 'rxjs';
-import { Router } from 'express';
-import { AuthService } from '../auth/auth.service';
+import { Article } from '../article.service';
+import { Router } from '@angular/router';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,ToolbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -23,21 +22,44 @@ export class HomeComponent {
   currentPage: number = 1;
   pageSize: number = 5;
   totalPages: number = 0;
+  sortOption: string = 'latest';
+
+
+  ngOnInit() {
+    this.loadArticles();
+  }
+
 
   constructor(private router: Router) {
     this.loadArticles();
-    // this.updatePage();
 
+  }
+  applySorting(): void {
+    switch (this.sortOption) {
+      case 'latest':
+        this.filteredArticles.sort((a, b) => b.publishDate.getTime() - a.publishDate.getTime());
+        break;
+      case 'popular':
+        this.filteredArticles.sort((a, b) => b.popularity - a.popularity);
+        break;
+      case 'editorsPick':
+        this.filteredArticles.sort((a, b) => a.thumbnail.toString().localeCompare(b.thumbnail.toString()));
+        break;
+    }
+    this.updatePage();
   }
 
   loadArticles() {
-    const savedArticles = localStorage.getItem('articles'); // Assuming articles are stored under 'apartments'
+    const savedArticles = localStorage.getItem('articles'); 
     if (savedArticles) {
       this.articles = JSON.parse(savedArticles);
-      this.filteredArticles = [...this.articles]; // Initialize filtered articles
+      this.filteredArticles = [...this.articles];
       this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
       this.updatePage();
     }
+  }
+  viewDetails(articleId: number): void {
+    this.router.navigate(['/article', articleId]);
   }
 
   onSearch() {

@@ -3,9 +3,9 @@ import { HomeComponent } from './home/home.component';
 import { ArticleComponent } from './article/article.component';
 import { LoginComponent } from './login/login.component';
 import { CreatePostComponent } from './create-post/create-post.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AuthorDirectoryComponent } from './author-directory/author-directory.component';
 
 export const routes: Routes = [
     {
@@ -17,7 +17,7 @@ export const routes: Routes = [
       { path: 'article/:id', component: ArticleComponent,canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'create-post', component: CreatePostComponent,canActivate: [AuthGuard] },
-      { path: 'user', component: UserProfileComponent,canActivate: [AuthGuard] },
+      { path: 'author-directory', component: AuthorDirectoryComponent,canActivate: [AuthGuard] },
       { path: 'signup', component: SignupComponent },
   
 ];
