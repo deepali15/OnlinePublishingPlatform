@@ -1,5 +1,4 @@
 /* General styles */
-
 body {
   margin: 0;
   padding: 0;
@@ -14,7 +13,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* for seach bar  */
+/* for search bar */
 form {
   position: relative;
   top: 50%;
@@ -79,25 +78,17 @@ form:valid .fa {
   color: white;
 }
 
-/* button {
+button {
   display: inline-block;
-  position: absolute;
-  top: 70px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
-  padding: 4px;
-  min-height: max-content;
-  background: transparent;
-  outline: 0;
-  border: 1px solid #303030;
+  background-color: #007bff;
+  padding: 10px 20px;
+  border: none;
   border-radius: 4px;
-  text-align: center;
-  width: 100%;
   cursor: pointer;
-} */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
 form:valid button {
   display: block;
@@ -138,7 +129,6 @@ form:valid button {
   border-radius: 0 4px 4px 0;
 }
 
-
 .featured-articles {
   margin-bottom: 30px;
 }
@@ -148,23 +138,41 @@ form:valid button {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .featured-card,
 .article-card {
-  flex: 1 1 calc(33.333% - 20px);
+  flex: 1 1 calc(33.333% - 20px); /* 3 cards per row with gap */
+  max-width: calc(33.333% - 20px);
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .featured-img,
 .article-img {
   width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
   border-radius: 8px;
   margin-bottom: 10px;
+  display: block;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add hover effect for a modern feel */
+.featured-img:hover, .article-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .sort-options {
@@ -206,38 +214,11 @@ form:valid button {
   background-color: #0056b3;
 }
 
-.featured-list {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.featured-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  width: calc(33.333% - 20px);
-  /* 3 cards per row, minus gaps */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* Ensure button stays at the bottom */
-}
-
 .featured-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* Keep button at the bottom */
-}
-
-.featured-img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 10px;
 }
 
 .view-btn  .button__text{
@@ -255,6 +236,7 @@ form:valid button {
   background-color: #0056b3;
   transform: scale(1.05);
 }
+
 .content {
   display: flex;
   flex-direction: column;
@@ -285,4 +267,28 @@ form:valid button {
 
 .create-post-btn:hover {
   background-color: #0056b3; /* Darker shade on hover */
+}
+
+
+
+@media (max-width: 768px) {
+  .article-card {
+    flex: 1 1 calc(50% - 20px); /* 2 cards per row on smaller screens */
+    max-width: calc(50% - 20px);
+  }
+
+  .featured-img, .article-img {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-card {
+    flex: 1 1 100%; /* Single column on very small screens */
+    max-width: 100%;
+  }
+
+  .featured-img, .article-img {
+    max-height: 120px;
+  }
 }

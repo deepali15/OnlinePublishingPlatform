@@ -50,6 +50,9 @@ export class HomeComponent {
     if (savedArticles) {
       this.articles = JSON.parse(savedArticles);
       this.filteredArticles = [...this.articles];
+      this.filteredArticles.forEach(article => {
+        console.log(article.image); // Check the image path or data
+      });
       this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
       this.updatePage();
     }
@@ -87,18 +90,21 @@ export class HomeComponent {
       this.updatePage();
     }
   }
-
-  /**
-   * Navigate to the next page
-   */
   onNext() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.updatePage();
     }
   }
+
   toCreatePost(){
     this.router.navigateByUrl('create-post');
   }
   
+
+  getImage(imageName: string): string {
+    const imageData = localStorage.getItem(imageName);
+    return imageData ? imageData : 'path/to/default/image.jpg'; // Fallback to a default image if not found
+  }
+
 }

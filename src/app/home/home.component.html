@@ -21,7 +21,7 @@
     <h2>Featured Articles</h2>
     <div class="featured-list">
       <div *ngFor="let article of filteredArticles" class="featured-card">
-        <img [src]="article.image" alt="img" class="featured-img" />
+        <img [src]="getImage(article.image)" alt="img" class="featured-img" />
         <div class="featured-content">
           <h2>{{ article.thumbnail }}</h2>
           <p>{{ article.description }}</p>
@@ -42,7 +42,8 @@
     </div>
     <div class="article-list">
       <div *ngFor="let article of filteredArticles" class="article-card">
-        <img [src]="article.image" alt="Article Image" class="article-img" />
+
+        <img [src]="getImage(article.image)" alt="Article Image" class="article-img"/>
         <div class="content">
           <h3>{{ article.thumbnail }}</h3>
           <p class="description">{{ article.description }}</p>
