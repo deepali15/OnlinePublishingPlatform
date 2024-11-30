@@ -1,3 +1,5 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
 <div class="container">
 	<div class="screen">
 		<div class="screen__content">
@@ -12,28 +14,31 @@
 				</div>
 				<button class="button login__submit" (click)="onLogin()">
 					<span class="button__text">Log In </span>
-					<i class
-                    ="button__icon fas fa-chevron-right"></i>
-				</button>	 			
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>
 			</form>
-            <div class="register">
-                <p>Don't have an account? <br>
-                  <button type="button__text"  (click)="toRegister()">Register</button>
-                </p>
-            </div>
+			<div class="register">
+				<p>Don't have an account? <br>
+					<button type="button__text" (click)="toRegister()">Register</button>
+				</p>
+			</div>
 			<div class="social-login">
 				<h3> or log in via</h3>
 				<div class="social-icons">
-					<!-- <a href="#" class="fa fa-google"></a> -->
-					<a href="#" class="fab fa-facebook"></a>
+					<a href="#" class="social-login__icon">
+						<i class="fab fa-google"></i>
+					</a>
+					<a href="#" class="social-login__icon">
+						<i class="fab fa-facebook"></i>
+					</a>
 				</div>
 			</div>
 		</div>
 		<div class="screen__background">
 			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape3"></span>
 			<span class="screen__background__shape screen__background__shape2"></span>
 			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
+		</div>
 	</div>
 </div>

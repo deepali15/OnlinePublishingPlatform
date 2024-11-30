@@ -4,13 +4,11 @@
 <app-toolbar></app-toolbar>
 
 <div class="home-container">
-
   <div class="form-group">
     <form action="" class="search-form">
       <input type="search" autofocus [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="keywords" required>
       <i class="fa fa-search"></i>
     </form>
-    <h1>Articles</h1>
   </div>
 
   <section class="featured-articles">
@@ -52,14 +50,9 @@
   </section>
 
   <!-- Pagination -->
-  <!-- <footer class="pagination">
-  <button class="prev-btn" (click)="onPrevious()" [disabled]="currentPage === 1">Previous</button>
-  <span>Page {{ currentPage }} of {{ totalPages }}</span>
-  <button class="next-btn" (click)="onNext()" [disabled]="currentPage === totalPages">Next</button>
-</footer> -->
   <footer class="pagination">
-    <button class="prev-btn" (click)="onPrevious()">Previous</button>
+    <button class="prev-btn" (click)="onPrevious()" [disabled]="currentPage === 1">Previous</button>
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <button class="next-btn" (click)="onNext()">Next</button>
+    <button class="next-btn" (click)="onNext()" [disabled]="currentPage === totalPages">Next</button>
   </footer>
 </div>

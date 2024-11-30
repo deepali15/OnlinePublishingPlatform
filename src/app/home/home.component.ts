@@ -17,19 +17,15 @@ export class HomeComponent {
   articles: Article[] = []; 
   filteredArticles: Article[] = []; // Array for search results
   searchQuery: string = ''; // For the search input
-  isBrowser: any;
   // Pagination
   currentPage: number = 1;
   pageSize: number = 5;
   totalPages: number = 0;
   sortOption: string = 'latest';
 
-
   ngOnInit() {
-    this.loadArticles();
+    this.updatePage(); // Calculate initial pagination
   }
-
-
   constructor(private router: Router) {
     this.loadArticles();
 
@@ -73,10 +69,11 @@ export class HomeComponent {
       this.filteredArticles = [...this.articles];
     }
     this.currentPage = 1;
-    this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
+    // this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
     this.updatePage();
   }
   updatePage() {
+    this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
 

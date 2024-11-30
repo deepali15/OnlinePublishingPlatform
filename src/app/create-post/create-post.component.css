@@ -20,3 +20,9 @@ quill-editor {
 .form-group {
   margin-top: 10px;
 }
+
+quill-editor {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
