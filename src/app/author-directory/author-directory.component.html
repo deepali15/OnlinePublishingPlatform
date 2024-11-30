@@ -43,7 +43,7 @@
                 <div class="author-thumbnail"></div>
                 <h3>{{ author.name }}</h3>
                 <p>{{ author.bio }}</p>
-                <button class="visit-btn">Visit →</button>
+                <button class="visit-btn" (click)="viewDetails(author.id)">Visit →</button>
             </div>
         </div>
     </section>

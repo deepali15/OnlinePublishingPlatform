@@ -17,8 +17,7 @@
     <form (ngSubmit)="addComment()">
       <textarea [(ngModel)]="newComment.text" name="commentText" rows="3" placeholder="Write your comment here..."
         required></textarea>
-      <input [(ngModel)]="newComment.author" name="commentAuthor" type="text" placeholder="Your name" required />
-      <button type="submit" class="btn">Add Comment</button>
+       <button type="submit" class="btn">Add Comment</button>
     </form>
   </div>
 </div>

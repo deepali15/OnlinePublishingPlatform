@@ -6,6 +6,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthorDirectoryComponent } from './author-directory/author-directory.component';
+import { AuthorComponent } from './author/author.component';
 
 export const routes: Routes = [
     {
@@ -19,5 +20,6 @@ export const routes: Routes = [
       { path: 'create-post', component: CreatePostComponent,canActivate: [AuthGuard] },
       { path: 'author-directory', component: AuthorDirectoryComponent,canActivate: [AuthGuard] },
       { path: 'signup', component: SignupComponent },
-  
+      { path: 'author/:id', component: AuthorComponent,canActivate: [AuthGuard] },
+      
 ];

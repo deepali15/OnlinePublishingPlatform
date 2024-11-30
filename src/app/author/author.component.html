@@ -1,0 +1,15 @@
+<div class="author-profile">
+    <h1>{{ author?.authorName }}</h1>
+    <p><strong>Email:</strong> {{ author?.email }}</p>
+    <p><strong>Biography:</strong> {{ author?.bio }}</p>
+    <div class="author-posts">
+        <h2>Posts by {{ author?.authorName }}</h2>
+        <ul>
+            <!-- <li *ngFor="let post of author?.posts"> -->
+                <!-- <a [routerLink]="['/article', post.id]">{{ post.title }}</a> -->
+            <!-- </li> -->
+        </ul>
+    </div>
+
+    <button (click)="backToProfile()">Back to Authors</button>
+</div>

@@ -1,0 +1,58 @@
+.author-profile {
+    max-width: 600px; /* Limit the width of the profile */
+    margin: 20px auto; /* Center the profile */
+    padding: 20px; /* Add padding */
+    border: 1px solid #ccc; /* Border around the profile */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+}
+
+.author-profile h1 {
+    font-size: 24px; /* Larger font for the name */
+    margin-bottom: 10px; /* Space below the name */
+}
+
+.author-profile p {
+    font-size: 16px; /* Standard font size for text */
+    margin: 5px 0; /* Space between paragraphs */
+}
+
+.author-posts {
+    margin-top: 20px; /* Space above the posts section */
+}
+
+.author-posts h2 {
+    font-size: 20px; /* Font size for posts section */
+}
+
+.author-posts ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+}
+
+.author-posts li {
+    margin: 5px 0; /* Space between posts */
+}
+
+.author-posts a {
+    text-decoration: none; /* Remove underline from links */
+    color: #007bff; /* Link color */
+}
+
+.author-posts a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+button {
+    margin-top: 20px; /* Space above the button */
+    padding: 10px 15px; /* Button padding */
+    background-color: #007bff; /* Button color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}

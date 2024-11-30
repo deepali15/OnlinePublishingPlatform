@@ -26,7 +26,6 @@ export class ArticleService {
     });
   }
    getArticles(): Observable<Article[]> {
-    console.log(this.articles)
     return of(this.articles);
   }
    private loadArticle() {

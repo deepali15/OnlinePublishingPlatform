@@ -28,6 +28,7 @@ export class AuthorDirectoryComponent {
   router = inject(Router);
   constructor() {
     this.loadArticles();
+    this.loadAuthors();
   }
   loadArticles(){
     const currentUser  = localStorage.getItem('currentUser');
@@ -49,7 +50,17 @@ export class AuthorDirectoryComponent {
   back(){
     this.router.navigateByUrl('home');
   }
+  loadAuthors(){
+    const savedAuthors = localStorage.getItem('authors'); 
+    if (savedAuthors) {
+      this.authors = JSON.parse(savedAuthors);
+    }
+  }
+  viewDetails(articleId: number): void {
+    this.router.navigate(['/author', articleId]);
+  }
 }
+
 
 export interface Author {
   id: number;

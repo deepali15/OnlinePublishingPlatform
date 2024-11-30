@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Article, ArticleService } from '../article.service';
 import { FormsModule } from '@angular/forms';
+import { Author } from '../author-directory/author-directory.component';
 
 @Component({
   selector: 'app-article',
@@ -39,8 +40,14 @@ getImage(imageName: string): string {
   return imageData ? imageData : 'path/to/default/image.jpg'; // Fallback to a default image if not found
 }
 addComment(): void {
-  if (this.newComment.text.trim() && this.newComment.author.trim()) {
+  if (this.newComment.text.trim()) {
     // Add the new comment to the comments array
+    const currentUser  = localStorage.getItem('currentUser');
+    if(currentUser){
+    const author = JSON.parse(currentUser ) as Author;
+    
+    this.newComment.author=author.authorName;
+    }
     this.comments.push({ ...this.newComment });
 
     // Save the updated comments to localStorage

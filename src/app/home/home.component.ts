@@ -97,5 +97,8 @@ export class HomeComponent {
       this.updatePage();
     }
   }
-
+  toCreatePost(){
+    this.router.navigateByUrl('create-post');
+  }
+  
 }

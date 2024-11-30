@@ -79,8 +79,8 @@ form:valid .fa {
   color: white;
 }
 
-button {
-  display: none;
+/* button {
+  display: inline-block;
   position: absolute;
   top: 70px;
   bottom: 0;
@@ -97,7 +97,7 @@ button {
   text-align: center;
   width: 100%;
   cursor: pointer;
-}
+} */
 
 form:valid button {
   display: block;
@@ -240,7 +240,7 @@ form:valid button {
   margin-bottom: 10px;
 }
 
-.view-btn {
+.view-btn  .button__text{
   margin-top: 10px;
   padding: 10px 20px;
   background-color: #007bff;
@@ -251,7 +251,7 @@ form:valid button {
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.view-btn:hover {
+.view-btn:hover  .button__text:hover{
   background-color: #0056b3;
   transform: scale(1.05);
 }
@@ -259,4 +259,30 @@ form:valid button {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Align content to the left */
+}
+
+.create-post {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  margin: 20px 0; /* Add some margin */
+}
+
+.create-post-btn {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: flex; /* Use flexbox for icon and text alignment */
+  align-items: center; /* Center items vertically */
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.create-post-btn i {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.create-post-btn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
 }
