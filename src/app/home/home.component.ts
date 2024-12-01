@@ -58,6 +58,7 @@ export class HomeComponent {
   onSearch() {
     if (this.searchQuery.trim()==='') {
       this.filteredArticles = [...this.articles];
+      console.log("not searching", this.searchQuery);
     }else{
       this.filteredArticles = this.articles.filter(
         (article) =>{
@@ -70,13 +71,24 @@ export class HomeComponent {
     });
     console.log("size", this.filteredArticles)
     }
-    this.currentPage = 1;
+    
+    this.currentPage=1;
     this.updatePage();
   }
   updatePage() {  
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    this.filteredArticles = this.filteredArticles.slice(startIndex, endIndex);
+   
+    if (this.searchQuery.trim()==='') {      
+      this.filteredArticles = this.articles.slice(startIndex, endIndex);
+      this.totalPages = Math.ceil(this.articles.length / this.pageSize);
+    }
+    else{      
+      this.filteredArticles = this.filteredArticles.slice(startIndex, endIndex);
+      this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);  
+    }
+    
+    
   }
   onPrevious() {
     if (this.currentPage > 1) {
