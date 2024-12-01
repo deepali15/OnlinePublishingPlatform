@@ -58,9 +58,7 @@ export class HomeComponent {
   onSearch() {
     if (this.searchQuery.trim()==='') {
       this.filteredArticles = [...this.articles];
-      console.log("not searching", this.searchQuery)
     }else{
-      console.log("searching", this.searchQuery)
       this.filteredArticles = this.articles.filter(
         (article) =>{
           const thumbnail= article.thumbnail || '';

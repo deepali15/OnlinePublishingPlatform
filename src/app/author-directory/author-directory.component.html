@@ -11,12 +11,13 @@
 
     <div class="search-section">
         <input type="text"
-         id="search" 
+         name="search" 
          placeholder="Search..." 
          [(ngModel)]="searchQuery" 
          (input)="onSearch()" 
          class="search-box" />
         <select [(ngModel)]="selectedCategory" class="dropdown">
+            <option value="">Select</option>
             <option value="articles">Articles</option>
             <option value="authors">Authors</option>
         </select>
@@ -36,7 +37,7 @@
             <div class="article-card" *ngFor="let article of filteredArticles">
                 <img [src]="getImage(article.image)" class="article-image" />
                 <div class="article-thumbnail"></div>
-                <p>{{ article.thumbnail }}</p>
+                <a (click)="readMore(article.id)">{{ article.thumbnail }}</a>
             </div>
         </div>
     </section>

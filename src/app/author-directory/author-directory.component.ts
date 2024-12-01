@@ -26,7 +26,7 @@ export class AuthorDirectoryComponent {
     'Family Therapy'
   ];
   articles: Article[] = []; 
-  selectedCategory: string = 'articles';
+  selectedCategory: string = '';
   router = inject(Router);
   constructor() {
     this.loadArticles();
@@ -49,23 +49,35 @@ export class AuthorDirectoryComponent {
   
 
   onSearch(): void {
-    this.authors$.subscribe(author=>
-    {
+    if (this.selectedCategory==='articles'){
+      console.log("searching Articles", this.selectedCategory)
       if (this.searchQuery.trim()===''){
-        this.filteredAuthors=this.authors;
-      }else{
-        this.filteredAuthors=author.filter(author=>{
-          const name = author.authorName;
-          return name.toLowerCase().includes(this.searchQuery.toLowerCase());
-        })
+        this.filteredArticles=this.articles;
+        }else{
+          this.filteredArticles = this.articles.filter(
+            (article) =>{
+              const thumbnail= article.thumbnail || '';
+          const description= article.description || '';
+          const authorName= article.authorName || '';
+          return thumbnail.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          description.toLowerCase().includes(this.searchQuery.toLowerCase())
+      });
       }
     }
-    )
-    // const query = this.searchQuery.toLowerCase();
-    // this.filteredAuthors = this.authors.filter((author) =>
-    //   author.name.toLowerCase().includes(query)
-    // );
+else if (this.selectedCategory==='authors'){
+  console.log(" searching authors", this.selectedCategory)
+  if (this.searchQuery.trim()===''){
+    this.filteredAuthors=this.authors;
+    }else{
+      this.filteredAuthors = this.authors.filter(
+        (author) =>{
+          const name= author.authorName || '';
+      return name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    });
   }
+}
+}
+
   back(){
     this.router.navigateByUrl('home');
   }
@@ -75,8 +87,11 @@ export class AuthorDirectoryComponent {
       this.authors = JSON.parse(savedAuthors);
     }
   }
-  viewDetails(articleId: number): void {
-    this.router.navigate(['/author', articleId]);
+  viewDetails(authorId: number): void {
+    this.router.navigate(['/author', authorId]);
+  }
+  readMore(articleId: number): void {
+    this.router.navigate(['/article', articleId]);
   }
   getImage(imageName: string): string {
     const imageData = localStorage.getItem(imageName);
