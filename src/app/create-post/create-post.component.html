@@ -1,39 +1,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <div class="container">
+  <form [formGroup]="postForm" (ngSubmit)="postListing()" class="form-container">
+    <!-- Actions for Preview and Publish buttons -->
+    <div class="actions">
+      <button type="button" class="preview-btn" (click)="previewPost()">Preview</button>
+      <button type="submit" class="btn-submit" (click)="postListing()">Publish</button>
+    </div>
 
- 
-<form [formGroup]="postForm" (ngSubmit)="postListing()" class="form-container">
-  <div class="actions">
-    <button class="preview-btn">Preview</button>
-    <button type="submit" class="btn-submit">Publish</button>
-  </div>
-  
-  <!-- Quill Rich Text Editor -->
-  <div class="form-group">
-    <!-- <label for="content">Content</label> -->
-    <!-- <quill-editor
-      formControlName="content"
-      [styles]="{ height: '300px' }"
-    ></quill-editor> -->
-  </div>
-  <div class="form-group">
-    <input type="text" formControlName="thumbnail" id="thumbnail" placeholder="add thumbnail" />
-  </div>
+    <!-- Thumbnail Input -->
+    <div class="form-group">
+      <label for="thumbnail">Thumbnail</label>
+      <input type="text" formControlName="thumbnail" id="thumbnail" placeholder="Add a thumbnail URL or choose a file" />
+    </div>
 
-  <div class="form-group">
-    <select formControlName="category" id="category">
-      <option value="">select category</option>
-      <option value="cat 1">cat 1</option>
-      <option value="cat 2"> cat 2</option>
-      <option value="cat 3">cat 3</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <textarea formControlName="description" id="description" rows="5" placeholder="  "></textarea>
-  </div>
-  <h3>Image</h3>
-<div class="form-group">
-  <input type="file" (change)="onImageSelected($event)" id="image" />
-</div>
-</form>
+    <!-- Category Selector -->
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select formControlName="category" id="category">
+        <option value="">Select Category</option>
+        <option value="cat 1">Cat 1</option>
+        <option value="cat 2">Cat 2</option>
+        <option value="cat 3">Cat 3</option>
+      </select>
+    </div>
+
+    <!-- Description Textarea -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea formControlName="description" id="description" rows="5" placeholder="Write a brief description"></textarea>
+    </div>
+    <div *ngIf="showPreview" class="preview-section">
+      <h2>Preview</h2>
+      <div class="preview-card">
+        <img [src]="previewArticle?.thumbnail" alt="Post Thumbnail" class="preview-thumbnail" (error)="onImageError()" />
+        <h3>{{ previewArticle?.authorName }}</h3>
+        <p><strong>Category:</strong> {{ previewArticle?.category }}</p>
+        <p><strong>Description:</strong> {{ previewArticle?.description }}</p>
+      </div>
+    </div>
+
+    <!-- Image Upload -->
+    <h3>Image</h3>
+    <div class="form-group">
+      <input type="file" (change)="onImageSelected($event)" id="image" />
+    </div>
+  </form>
 </div>

@@ -4,33 +4,39 @@
 <app-toolbar></app-toolbar>
 
 <div class="home-container">
+  <link rel="stylesheet" href="home.component.css"> 
+  <!-- Search Section -->
   <div class="form-group">
-    <form action="" class="search-form">
-      <input type="search" autofocus [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="keywords" required>
-      <i class="fa fa-search"></i>
+    <form class="search-form">
+      <input type="search" autofocus [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search articles..." required>
+      <button class="search-btn"><i class="fa fa-search"></i></button>
     </form>
   </div>
 
+  <!-- Create Post Section -->
   <div class="create-post">
-    <button type="button__text" (click)="toCreatePost()">
-    <i class="fas fa-pencil-alt"></i> Draft an Article
-  </button>
-</div>
+    <button class="create-post-btn" (click)="toCreatePost()">
+      <i class="fas fa-pencil-alt"></i> Draft an Article
+    </button>
+  </div>
 
+  <!-- Featured Articles Section -->
   <section class="featured-articles">
     <h2>Featured Articles</h2>
     <div class="featured-list">
       <div *ngFor="let article of filteredArticles" class="featured-card">
-        <img [src]="getImage(article.image)" alt="img" class="featured-img" />
+        <img [src]="getImage(article.image)" alt="Article Image" class="featured-img" />
         <div class="featured-content">
-          <h2>{{ article.thumbnail }}</h2>
+          <h3>{{ article.thumbnail }}</h3>
           <p>{{ article.description }}</p>
           <button class="view-btn" (click)="viewDetails(article.id)">Read More</button>
         </div>
       </div>
     </div>
   </section>
-  <section class="articles">
+
+  <!-- All Articles Section -->
+  <section class="articles all-articles">
     <h2>All Articles</h2>
     <div class="sort-options">
       <label for="sort">Sort by:</label>
@@ -42,8 +48,7 @@
     </div>
     <div class="article-list">
       <div *ngFor="let article of filteredArticles" class="article-card">
-
-        <img [src]="getImage(article.image)" alt="Article Image" class="article-img"/>
+        <img [src]="getImage(article.image)" alt="Article Image" class="article-img" />
         <div class="content">
           <h3>{{ article.thumbnail }}</h3>
           <p class="description">{{ article.description }}</p>

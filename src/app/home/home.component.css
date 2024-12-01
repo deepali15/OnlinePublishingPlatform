@@ -1,4 +1,6 @@
-/* General styles */
+/* General Styles */
+/* Full-Page Background Image */
+/* Full-Page Background Image */
 body {
   margin: 0;
   padding: 0;
@@ -8,153 +10,172 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.form-group {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* for search bar */
-form {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 1s;
-  width: 50px;
-  height: 50px;
-  background: white;
-  box-sizing: border-box;
-  border-radius: 4px;
-  border: 4px solid white;
-  padding: 5px;
-}
-
-input {
-  position: absolute;
+/* Optional: Semi-Transparent Overlay for Readability */
+body::before {
+  content: '';
+  position: fixed;
   top: 0;
   left: 0;
-  width: 0;
-  height: 42.5px;
-  line-height: 30px;
-  outline: 0;
-  border: 0;
-  font-size: 1em;
-  border-radius: 20px;
-  padding: 0 20px;
-}
-
-.fa {
-  box-sizing: border-box;
-  padding: 10px;
-  width: 42.5px;
-  height: 42.5px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 4px;
-  color: #07051a;
-  text-align: center;
-  font-size: 1.2em;
-  transition: all 1s;
-}
-
-form:focus-within,
-form:hover,
-form:valid {
-  width: 200px;
-  cursor: pointer;
-}
-
-form:hover input,
-form:focus-within input,
-form:valid input {
   width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Optional: adjust opacity */
+  z-index: -1; /* Place behind all other content */
 }
 
-form:hover .fa,
-form:focus-within .fa,
-form:valid .fa {
-  background: #07051a;
-  color: white;
+
+/* Additional Styling to Fit Content */
+.container {
+  position: relative;
+  z-index: 1; /* Ensures content is above the overlay */
+  padding: 20px;
 }
 
-button {
-  display: inline-block;
-  font-size: 16px;
-  color: white;
-  background-color: #007bff;
+/* Make All Sections Inside the Page Fit Well */
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+
+header {
+  background-color: #1c1c2d;
   padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-form:valid button {
-  display: block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .home-container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
-.search-bar {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+/* Search Section */
+.search-section {
+  margin-bottom: 30px;
 }
 
 .search-form {
   display: flex;
-  width: 100%;
-  max-width: 600px;
+  justify-content: center;
+  align-items: center;
 }
 
-.search-input {
-  flex-grow: 1;
-  padding: 10px;
-  font-size: 16px;
+.search-form input {
+  width: clamp(200px, 50%, 400px);
+  padding: 10px 15px;
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
+  font-size: 16px;
 }
 
-.search-button {
+.search-btn {
   background-color: #007bff;
   color: #fff;
+  padding: 10px;
   border: none;
-  padding: 10px 15px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Create Post Section */
+.create-post {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.create-post-btn {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  gap: 8px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 0 4px 4px 0;
+  transition: background-color 0.3s;
 }
 
-.featured-articles {
-  margin-bottom: 30px;
+.create-post-btn:hover {
+  background-color: #0056b3;
 }
 
-.featured-list,
-.article-list {
-  display: flex;
+/* Articles Sections */
+.featured-articles, .articles {
+  margin-bottom: 40px;
+}
+/* Style for the All Articles section */
+.all-articles {
+  text-align: center; /* Center-align heading and dropdown */
+  padding: 20px; /* Add spacing */
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 10px; /* Rounded corners for a softer look */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin: 20px auto; /* Add spacing around the section */
+  width: 80%; /* Limit the section width */
+}
+
+/* Style for the heading */
+.all-articles h2 {
+  font-size: 2rem; /* Larger heading font */
+  color: #333; /* Darker color for visibility */
+  margin-bottom: 15px; /* Space below the heading */
+  font-weight: 700; /* Make it bold */
+  font-family: 'Arial', sans-serif; /* Clean, modern font */
+}
+
+/* Style for the dropdown */
+.all-articles select {
+  font-size: 1rem; /* Larger font for better readability */
+  padding: 10px; /* Add padding for a better look */
+  border: 1px solid #ccc; /* Border for dropdown */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #fff; /* White background for clarity */
+  color: #333; /* Dark text */
+  cursor: pointer; /* Pointer cursor for interactivity */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Hover effect for dropdown */
+.all-articles select:hover {
+  border-color: #007BFF; /* Change border color on hover */
+  box-shadow: 0px 2px 4px rgba(0, 123, 255, 0.2); /* Subtle shadow */
+}
+
+h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.featured-list, .article-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
-.featured-card,
-.article-card {
-  flex: 1 1 calc(33.333% - 20px); /* 3 cards per row with gap */
-  max-width: calc(33.333% - 20px);
-  background: #fff;
-  border: 1px solid #ddd;
+.featured-card, .article-card {
+  background: #1c1c2d;
   border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.featured-card:hover, .article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Images */
 .featured-img,
 .article-img {
   width: 100%;
@@ -164,113 +185,72 @@ form:valid button {
   border-radius: 8px;
   margin-bottom: 10px;
   display: block;
-  background-color: #f0f0f0;
+  background-color:wheat;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Add hover effect for a modern feel */
-.featured-img:hover, .article-img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
+.featured-content, .content {
+  padding: 15px;
+  background-color: rosybrown;
+  position: relative;
+  z-index: 2;
 }
 
-.sort-options {
-  margin-bottom: 20px;
+.featured-content h3, .content h3 {
+  font-size: 1.2rem;
+  margin: 0 0 10px;
 }
 
-.meta {
-  font-size: 12px;
-  color: #555;
+.featured-content p, .content p {
+  font-size: 0.9rem;
+  margin: 0 0 10px;
 }
 
+.view-btn, .view-details-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-btn:hover, .view-details-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
-.prev-btn,
-.next-btn {
-  padding: 10px 20px;
+.prev-btn, .next-btn {
   background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.prev-btn:disabled,
-.next-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.prev-btn:hover:enabled,
-.next-btn:hover:enabled {
-  background-color: #0056b3;
-}
-
-.featured-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.view-btn  .button__text{
-  margin-top: 10px;
+  color: #fff;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s;
 }
 
-.view-btn:hover  .button__text:hover{
+.prev-btn:disabled, .next-btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.prev-btn:hover:not(:disabled), .next-btn:hover:not(:disabled) {
   background-color: #0056b3;
-  transform: scale(1.05);
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align content to the left */
-}
-
-.create-post {
-  display: flex;
-  justify-content: center; /* Center the button horizontally */
-  margin: 20px 0; /* Add some margin */
-}
-
-.create-post-btn {
-  background-color: #007bff; /* Bootstrap primary color */
-  color: white; /* Text color */
-  border: none; /* Remove default border */
-  padding: 10px 20px; /* Padding for the button */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  display: flex; /* Use flexbox for icon and text alignment */
-  align-items: center; /* Center items vertically */
-  transition: background-color 0.3s; /* Smooth background color transition */
-}
-
-.create-post-btn i {
-  margin-right: 8px; /* Space between icon and text */
-}
-
-.create-post-btn:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-}
-
-
-
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .article-card {
     flex: 1 1 calc(50% - 20px); /* 2 cards per row on smaller screens */

@@ -1,10 +1,10 @@
-<div *ngIf="article">
-  <div class="apartment-detail">
-    <img [src]="getImage(article.image)" class="article-image" />
-    <h2>{{ article.thumbnail }}</h2>
-    <p class="description"> {{ article.description }}</p>
-    <p class="authorName"> {{ article.authorName }}</p>
-    <p class="publishDate"> {{ article.publishDate }}</p>
+<div *ngIf="article" class="article-container">
+  <div class="article-detail">
+    <img [src]="getImage(article.image)" class="article-image" alt="Article Image" />
+    <h2 class="article-title">{{ article.thumbnail }}</h2>
+    <p class="article-description">{{ article.description }}</p>
+    <p class="article-author"> <strong>By:</strong> {{ article.authorName }}</p>
+    <p class="article-date"><strong>Published on:</strong> {{ article.publishDate }}</p>
   </div>
 
   <div class="comments-section">
@@ -14,13 +14,18 @@
       <p class="comment-text">{{ comment.text }}</p>
     </div>
     <h4>Add a Comment</h4>
-    <form (ngSubmit)="addComment()">
-      <textarea [(ngModel)]="newComment.text" name="commentText" rows="3" placeholder="Write your comment here..."
-        required></textarea>
-       <button type="submit" class="btn">Add Comment</button>
+    <form (ngSubmit)="addComment()" class="comment-form">
+      <textarea
+        [(ngModel)]="newComment.text"
+        name="commentText"
+        rows="3"
+        placeholder="Write your comment here..."
+        required
+      ></textarea>
+      <button type="submit" class="btn">Add Comment</button>
     </form>
   </div>
 </div>
-<button class="btn" (click)="backHome()">
+<button class="btn back-home-btn" (click)="backHome()">
   View All
 </button>

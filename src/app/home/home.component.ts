@@ -13,23 +13,21 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  // articles$!: Observable<Article[]>;
+ 
   articles: Article[] = []; 
   filteredArticles: Article[] = []; // Array for search results
   searchQuery: string = ''; // For the search input
   // Pagination
   currentPage: number = 1;
-  pageSize: number = 5;
+  pageSize: number = 3;
   totalPages: number = 0;
   sortOption: string = 'latest';
 
   ngOnInit() {
+    this.loadArticles();
     this.updatePage(); // Calculate initial pagination
   }
-  constructor(private router: Router) {
-    this.loadArticles();
-
-  }
+  constructor(private router: Router) {}
   applySorting(): void {
     switch (this.sortOption) {
       case 'latest':
@@ -53,7 +51,7 @@ export class HomeComponent {
       this.filteredArticles.forEach(article => {
         console.log(article.image); // Check the image path or data
       });
-      this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
+      this.totalPages = Math.ceil(this.articles.length / this.pageSize);
       this.updatePage();
     }
   }
@@ -75,14 +73,10 @@ export class HomeComponent {
     // this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
     this.updatePage();
   }
-  updatePage() {
-    this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
+  updatePage() {  
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-
-    // Use filteredArticles if a search is active, otherwise use articles
-    // this.filteredArticles =this.searchQuery.trim() !== '' ? this.filteredArticles : [...this.articles];
-    this.filteredArticles = this.filteredArticles.slice(startIndex, endIndex);
+    this.filteredArticles = this.articles.slice(startIndex, endIndex);
   }
   onPrevious() {
     if (this.currentPage > 1) {

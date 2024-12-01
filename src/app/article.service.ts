@@ -71,5 +71,6 @@ export interface Article {
   publishDate: Date;
   image: string;
   popularity: number;
+  category : string;
 }
 

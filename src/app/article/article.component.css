@@ -1,82 +1,187 @@
-.article-detail {
-    margin-bottom: 20px;
-  }
-  
-  .comments-section {
-    margin-top: 20px;
-  }
-  
-  .comments-section h3 {
-    font-size: 1.5rem;
-  }
-  
-  .comment {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-  }
-  
-  .comment-author {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .comment-text {
-    margin: 0;
-  }
-  
-  textarea {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 1rem;
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 1rem;
-  }
-  
-  button.btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button.btn:hover {
-    background-color: #0056b3;
-  }
-  
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f6;
+  color: #333;
+}
 
-  .article-image {
+article {
+  padding: 20px;
+}
+
+/* Main Container */
+.article-container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.article-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Article Detail Styling */
+.article-detail {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.article-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 15px 0;
+}
+
+.article-description {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+.article-author,
+.article-date {
+  font-size: 1rem;
+  color: #888;
+  margin: 10px 0;
+}
+
+.article-author strong,
+.article-date strong {
+  color: #333;
+}
+
+/* Image Styling */
+.article-image {
   width: 100%;
-  height: auto;
-  max-height: 150px;
+  height: 300px;
   object-fit: contain;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  display: block;
+  border-radius: 12px;
+  margin-bottom: 20px;
   background-color: #f0f0f0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Add hover effect for a modern feel */
 .article-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 480px) {
-  .article-card {
-    flex: 1 1 100%; /* Single column on very small screens */
-    max-width: 100%;
+/* Comments Section Styling */
+.comments-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.comments-section h3 {
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.comment {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.comment-text {
+  color: #555;
+}
+
+/* Add Comment Form Styling */
+.comment-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  resize: none;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.comment-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.comment-form button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Back Home Button */
+.back-home-btn {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 12px;
+  margin-bottom: 20px;
+  background-color: #28a745;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.back-home-btn:hover {
+  background-color: #218838;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .article-container {
+    padding: 20px;
   }
 
-  .article-image {
-    max-height: 120px;
+  .article-title {
+    font-size: 1.8rem;
+  }
+
+  .article-description {
+    font-size: 1rem;
+  }
+
+  .comment-form button {
+    font-size: 1rem;
+  }
+
+  .comment-form textarea {
+    font-size: 0.9rem;
   }
 }

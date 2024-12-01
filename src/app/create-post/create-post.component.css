@@ -1,28 +1,118 @@
+/* Container Styling */
 .container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 10px;
   background-color: #fff;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-quill-editor {
-  height: 300px;
-  margin-bottom: 20px;
+
+/* Form Styling */
+.form-container {
+  display: flex;
+  flex-direction: column;
 }
+
+/* Actions Section (Preview and Publish buttons) */
 .actions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-}
-.form-group {
-  margin-top: 10px;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
-quill-editor {
+.preview-btn,
+.btn-submit {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.preview-btn {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.preview-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Form Groups (Input, Select, Textarea) */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+input[type="text"],
+select,
+textarea,
+input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #fff;
+  margin-bottom: 10px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Image Upload */
+input[type="file"] {
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .preview-btn,
+  .btn-submit {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
