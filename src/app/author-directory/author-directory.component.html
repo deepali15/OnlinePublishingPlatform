@@ -10,7 +10,12 @@
 </header>
 
     <div class="search-section">
-        <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()" class="search-box" />
+        <input type="text"
+         id="search" 
+         placeholder="Search..." 
+         [(ngModel)]="searchQuery" 
+         (input)="onSearch()" 
+         class="search-box" />
         <select [(ngModel)]="selectedCategory" class="dropdown">
             <option value="articles">Articles</option>
             <option value="authors">Authors</option>
@@ -42,7 +47,7 @@
             <div class="author-card" *ngFor="let author of authors">
                 <div class="author-badge">{{ author.category }}</div>
                 <div class="author-thumbnail"></div>
-                <h3>{{ author.name }}</h3>
+                <h3>{{ author.authorName }}</h3>
                 <p>{{ author.bio }}</p>
                 <button class="visit-btn" (click)="viewDetails(author.id)">Visit →</button>
             </div>

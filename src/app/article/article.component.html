@@ -1,11 +1,11 @@
+
 <div *ngIf="article" class="article-container">
   <div class="article-detail">
     <img [src]="getImage(article.image)" class="article-image" alt="Article Image" />
     <h2 class="article-title">{{ article.thumbnail }}</h2>
     <p class="article-description">{{ article.description }}</p>
     <p class="article-author"> <strong>By:</strong> {{ article.authorName }}</p>
-    <p class="article-date"><strong>Published on:</strong> {{ article.publishDate }}</p>
-  </div>
+    <p class="article-date"><strong>Published on:</strong> {{ article.publishDate | date:'MMMM d, y' }}</p>
 
   <div class="comments-section">
     <h3>Comments</h3>

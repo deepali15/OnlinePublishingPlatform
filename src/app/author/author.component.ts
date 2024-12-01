@@ -26,9 +26,9 @@ export class AuthorComponent {
       const id = +params['id'];
       this.getAuthor(id).subscribe(author => {
         this.author = author;
+        this.loadArticles();
       });
-    });
-    this.loadArticles()
+    }); 
 }
 
 getAuthor(id: number): Observable<Author | undefined> {
@@ -44,12 +44,13 @@ loadArticles(){
   if (savedArticles) {
     this.articles = JSON.parse(savedArticles);
   }
-  const currentUser  = localStorage.getItem('currentUser');
-  if(currentUser){
-  const author = JSON.parse(currentUser ) as Author;
+  console.log("author name",this.author?.authorName)
+  // const currentUser  = localStorage.getItem('currentUser');
+  if(this.author){
+  // const author = JSON.parse(currentUser ) as Author;
   this.filteredArticles = this.articles.filter(
     (article) =>
-      article.authorName.toLowerCase().includes(author.authorName)
+      article.authorName === this.author?.authorName
   );
   }
 }

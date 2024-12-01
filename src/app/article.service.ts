@@ -53,8 +53,8 @@ export class ArticleService {
     } else {
       article.authorName = 'Unknown'; // Handle case where there is no user
     }
-    console.log("current user: ",currentUser)
-    console.log("article : ",article)
+    // console.log("current user: ",currentUser)
+    // console.log("article : ",article)
     this.articles.push(article);
     if (this.isBrowser) {
       this.saveArticle();
@@ -72,5 +72,6 @@ export interface Article {
   image: string;
   popularity: number;
   category : string;
+
 }
 

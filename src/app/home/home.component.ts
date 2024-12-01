@@ -48,10 +48,6 @@ export class HomeComponent {
     if (savedArticles) {
       this.articles = JSON.parse(savedArticles);
       this.filteredArticles = [...this.articles];
-      this.filteredArticles.forEach(article => {
-        console.log(article.image); // Check the image path or data
-      });
-      this.totalPages = Math.ceil(this.articles.length / this.pageSize);
       this.updatePage();
     }
   }
@@ -60,23 +56,29 @@ export class HomeComponent {
   }
 
   onSearch() {
-    if (this.searchQuery.trim()) {
-      this.filteredArticles = this.articles.filter(
-        (article) =>
-          article.thumbnail.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          article.authorName.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    } else {
+    if (this.searchQuery.trim()==='') {
       this.filteredArticles = [...this.articles];
+      console.log("not searching", this.searchQuery)
+    }else{
+      console.log("searching", this.searchQuery)
+      this.filteredArticles = this.articles.filter(
+        (article) =>{
+          const thumbnail= article.thumbnail || '';
+          const description= article.description || '';
+          const authorName= article.authorName || '';
+          return thumbnail.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          description.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          authorName.toLowerCase().includes(this.searchQuery.toLowerCase())
+    });
+    console.log("size", this.filteredArticles)
     }
     this.currentPage = 1;
-    // this.totalPages = Math.ceil(this.filteredArticles.length / this.pageSize);
     this.updatePage();
   }
   updatePage() {  
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    this.filteredArticles = this.articles.slice(startIndex, endIndex);
+    this.filteredArticles = this.filteredArticles.slice(startIndex, endIndex);
   }
   onPrevious() {
     if (this.currentPage > 1) {

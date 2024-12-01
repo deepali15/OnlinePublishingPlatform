@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Article } from '../article.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-author-directory',
@@ -13,10 +14,11 @@ import { Router } from '@angular/router';
   styleUrl: './author-directory.component.css'
 })
 export class AuthorDirectoryComponent {
+  authors$!: Observable<Author[]>;
 
-  authors: any[] = [];
+  authors: Author[] = [];
   filteredArticles: Article[] = [];
-  filteredAuthors: any[] = [];
+  filteredAuthors: Author[] = [];
   searchQuery: string = '';
   trendingKeywords: string[] = [
     'Everything Explained',
@@ -40,17 +42,29 @@ export class AuthorDirectoryComponent {
     const author = JSON.parse(currentUser ) as Author;
     this.filteredArticles = this.articles.filter(
       (article) =>
-        article.authorName.toLowerCase().includes(author.authorName)
+        article.category.toLowerCase().includes(author.category)
     );
     }
   }
   
 
   onSearch(): void {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredAuthors = this.authors.filter((author) =>
-      author.name.toLowerCase().includes(query)
-    );
+    this.authors$.subscribe(author=>
+    {
+      if (this.searchQuery.trim()===''){
+        this.filteredAuthors=this.authors;
+      }else{
+        this.filteredAuthors=author.filter(author=>{
+          const name = author.authorName;
+          return name.toLowerCase().includes(this.searchQuery.toLowerCase());
+        })
+      }
+    }
+    )
+    // const query = this.searchQuery.toLowerCase();
+    // this.filteredAuthors = this.authors.filter((author) =>
+    //   author.name.toLowerCase().includes(query)
+    // );
   }
   back(){
     this.router.navigateByUrl('home');

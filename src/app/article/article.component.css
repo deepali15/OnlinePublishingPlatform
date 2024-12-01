@@ -173,15 +173,18 @@ article {
     font-size: 1.8rem;
   }
 
-  .article-description {
-    font-size: 1rem;
-  }
 
   .comment-form button {
     font-size: 1rem;
   }
-
-  .comment-form textarea {
-    font-size: 0.9rem;
-  }
 }
+
+.publishDate {
+  font-size: 16px; /* Adjust font size */
+  color: #333; /* Text color */
+  margin: 10px 0; /* Margin for spacing */
+  font-family: Arial, sans-serif; /* Font family */
+  text-align: left; /* Align text to the right */
+  transition: color 0.3s; /* Smooth transition for hover effect */
+}
+

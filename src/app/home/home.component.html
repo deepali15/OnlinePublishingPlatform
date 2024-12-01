@@ -7,9 +7,14 @@
   <link rel="stylesheet" href="home.component.css"> 
   <!-- Search Section -->
   <div class="form-group">
-    <form class="search-form">
-      <input type="search" autofocus [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search articles..." required>
-      <button class="search-btn"><i class="fa fa-search"></i></button>
+    <form action="" class="search-form">
+      <input type="text" 
+      name="search" 
+       [(ngModel)]="searchQuery" 
+       (input)="onSearch()" 
+       placeholder="keywords" >
+      <i class="fa fa-search"></i>
+
     </form>
   </div>
 
