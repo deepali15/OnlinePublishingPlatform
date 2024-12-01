@@ -31,6 +31,10 @@ export class AuthorDirectoryComponent {
     this.loadAuthors();
   }
   loadArticles(){
+    const savedArticles = localStorage.getItem('articles'); 
+    if (savedArticles) {
+      this.articles = JSON.parse(savedArticles);
+    }
     const currentUser  = localStorage.getItem('currentUser');
     if(currentUser){
     const author = JSON.parse(currentUser ) as Author;
@@ -40,6 +44,7 @@ export class AuthorDirectoryComponent {
     );
     }
   }
+  
 
   onSearch(): void {
     const query = this.searchQuery.toLowerCase();
@@ -58,6 +63,10 @@ export class AuthorDirectoryComponent {
   }
   viewDetails(articleId: number): void {
     this.router.navigate(['/author', articleId]);
+  }
+  getImage(imageName: string): string {
+    const imageData = localStorage.getItem(imageName);
+    return imageData ? imageData : 'path/to/default/image.jpg'; // Fallback to a default image if not found
   }
 }
 

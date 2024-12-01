@@ -5,9 +5,11 @@
     <div class="author-posts">
         <h2>Posts by {{ author?.authorName }}</h2>
         <ul>
-            <!-- <li *ngFor="let post of author?.posts"> -->
-                <!-- <a [routerLink]="['/article', post.id]">{{ post.title }}</a> -->
-            <!-- </li> -->
+            <li *ngFor="let article of filteredArticles">
+                <img [src]="getImage(article.image)" class="article-image" />
+                <!-- <button class="visit-btn" >Visit →</button> -->
+                <a (click)="viewDetails(article.id)">{{ article.thumbnail }}</a>
+             </li>
         </ul>
     </div>
 

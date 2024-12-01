@@ -50,3 +50,33 @@
     background-color: #0056b3;
   }
   
+
+  .article-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: block;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add hover effect for a modern feel */
+.article-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+  .article-card {
+    flex: 1 1 100%; /* Single column on very small screens */
+    max-width: 100%;
+  }
+
+  .article-image {
+    max-height: 120px;
+  }
+}

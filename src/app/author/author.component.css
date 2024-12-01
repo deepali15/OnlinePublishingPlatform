@@ -17,32 +17,6 @@
     margin: 5px 0; /* Space between paragraphs */
 }
 
-.author-posts {
-    margin-top: 20px; /* Space above the posts section */
-}
-
-.author-posts h2 {
-    font-size: 20px; /* Font size for posts section */
-}
-
-.author-posts ul {
-    list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove padding */
-}
-
-.author-posts li {
-    margin: 5px 0; /* Space between posts */
-}
-
-.author-posts a {
-    text-decoration: none; /* Remove underline from links */
-    color: #007bff; /* Link color */
-}
-
-.author-posts a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
 button {
     margin-top: 20px; /* Space above the button */
     padding: 10px 15px; /* Button padding */
@@ -55,4 +29,58 @@ button {
 
 button:hover {
     background-color: #0056b3; /* Darker shade on hover */
+}
+.author-posts {
+    margin-top: 20px; /* Space above the posts section */
+}
+
+.author-posts h2 {
+    font-size: 24px; /* Font size for the section title */
+    margin-bottom: 15px; /* Space below the title */
+    text-align: center; /* Center the title */
+    color: #333; /* Title color */
+}
+
+.author-posts ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow wrapping to next line */
+    justify-content: center; /* Center the items */
+    gap: 20px; /* Space between items */
+}
+
+.author-posts li {
+    background: #fff; /* White background for each post */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Hide overflow */
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+    width: 200px; /* Fixed width for each post */
+    text-align: center; /* Center text */
+}
+
+.author-posts li:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+.article-image {
+    width: 100%; /* Full width for the image */
+    height: auto; /* Maintain aspect ratio */
+    border-bottom: 1px solid #ddd; /* Border below the image */
+}
+
+.author-posts a {
+    display: block; /* Make the link a block element */
+    padding: 10px; /* Space around the text */
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+}
+
+.author-posts a:hover {
+    color: #0056b3; /* Darker color on hover */
+    text-decoration: underline; /* Underline on hover */
 }

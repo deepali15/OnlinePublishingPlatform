@@ -29,6 +29,7 @@
         <h2>Readers' choice</h2>
         <div class="articles">
             <div class="article-card" *ngFor="let article of filteredArticles">
+                <img [src]="getImage(article.image)" class="article-image" />
                 <div class="article-thumbnail"></div>
                 <p>{{ article.thumbnail }}</p>
             </div>
