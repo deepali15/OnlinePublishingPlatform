@@ -53,8 +53,6 @@ export class ArticleService {
     } else {
       article.authorName = 'Unknown'; // Handle case where there is no user
     }
-    // console.log("current user: ",currentUser)
-    // console.log("article : ",article)
     this.articles.push(article);
     if (this.isBrowser) {
       this.saveArticle();

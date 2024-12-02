@@ -1,36 +1,41 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Article, ArticleService } from '../article.service';
 import { Router } from '@angular/router';
+import { EditorModule  } from '@tinymce/tinymce-angular';
 
 @Component({
   selector: 'app-create-post',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,CommonModule],
+  imports: [CommonModule,FormsModule, ReactiveFormsModule, EditorModule],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css'
 })
 export class CreatePostComponent {
-  // quillConfiguration = QuillConfiguration;
+  editorCinfig = {
+    base_url: '/tinymce',
+    suffix: '.min',
+    plugins: 'lists link table wordcount'
+  };
+
   postForm: FormGroup;
   showPreview: boolean = false; // Flag to toggle preview visibility
   previewArticle: Article | null = null;
   previewImageUrl: string | null = null;
+  // description: string = '';
+  selectedImage: File | null = null;
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
     private router: Router
-  ){
-  this.postForm = this.fb.group({
-    category: ['', Validators.required],
-    description: ['', Validators.required],
-    thumbnail: ['', Validators.required],
-    
-  });
+  ) {
+    this.postForm = this.fb.group({
+      category: ['', Validators.required],
+      thumbnail: ['', Validators.required],
+      description: ['', Validators.required],
+    });
   }
-  
-  selectedImage: File | null = null;
   onImageSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -56,6 +61,7 @@ export class CreatePostComponent {
         };
         reader.readAsDataURL(this.selectedImage); // Read the image as a Data URL
       }
+      // newArticle.description=this.description;
       this.articleService.addArticle(newArticle);
       alert('Listing created successfully!');
       this.router.navigate(['/home']);
@@ -63,7 +69,7 @@ export class CreatePostComponent {
     } else {
       console.log("Form is not valid for preview"); // Debugging log
     }
-  
+
 
   }
   previewPost() {
@@ -77,23 +83,10 @@ export class CreatePostComponent {
   }
   onImageError() {
     console.error("Error loading image:", this.previewArticle?.thumbnail);
-}
+  }
   closePreview() {
     this.showPreview = false; // Hide the preview
     this.previewArticle = null;
     this.previewImageUrl = null;  // Reset preview article
   }
 }
-// export const QuillConfiguration = {
-//   toolbar: [
-//     ['bold', 'italic', 'underline', 'strike'],
-//     ['blockquote', 'code-block'],
-//     [{ list: 'ordered' }, { list: 'bullet' }],
-//     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-//     [{ color: [] }, { background: [] }, { align: [] }, { font: [] }],
-//     ['link'],
-//     ['image', 'video'],
-//     ['clean'],
-//   ],
-// };
-
