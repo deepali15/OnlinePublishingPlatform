@@ -11,7 +11,8 @@
     <!-- Thumbnail Input -->
     <div class="form-group">
       <label for="thumbnail">Thumbnail</label>
-      <input type="text" formControlName="thumbnail" id="thumbnail" placeholder="Add a thumbnail URL or choose a file" />
+      <input type="text" formControlName="thumbnail" id="thumbnail"
+        placeholder="Add a thumbnail URL or choose a file" />
     </div>
 
     <!-- Category Selector -->
@@ -28,12 +29,15 @@
     <!-- Description Textarea -->
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea formControlName="description" id="description" rows="5" placeholder="Write a brief description"></textarea>
+      <editor apiKey="g29yfwp0i72mk2e2s1z9ufpmu1zr3xdnmqmbi6kdxs7x6z9t" 
+      formControlName="description" [init]="editorCinfig">
+      </editor>
     </div>
     <div *ngIf="showPreview" class="preview-section">
       <h2>Preview</h2>
       <div class="preview-card">
-        <img [src]="previewArticle?.thumbnail" alt="Post Thumbnail" class="preview-thumbnail" (error)="onImageError()" />
+        <img [src]="previewArticle?.thumbnail" alt="Post Thumbnail" class="preview-thumbnail"
+          (error)="onImageError()" />
         <h3>{{ previewArticle?.authorName }}</h3>
         <p><strong>Category:</strong> {{ previewArticle?.category }}</p>
         <p><strong>Description:</strong> {{ previewArticle?.description }}</p>
