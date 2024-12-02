@@ -47,7 +47,9 @@
         <div class="authors">
             <div class="author-card" *ngFor="let author of authors">
                 <div class="author-badge">{{ author.category }}</div>
-                <div class="author-thumbnail"></div>
+                <div class="author-thumbnail">
+                    <img [src]="getImage(author.image)" alt="{{ author.authorName }}" />
+                </div>
                 <h3>{{ author.authorName }}</h3>
                 <p>{{ author.bio }}</p>
                 <button class="visit-btn" (click)="viewDetails(author.id)">Visit →</button>
